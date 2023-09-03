@@ -9,4 +9,6 @@ public interface UsersService {
     ApiResponse UsersPosts(Integer id);
 
     User theUser(Integer id);
+
+    ApiResponse blockUser(Integer id);
 }
