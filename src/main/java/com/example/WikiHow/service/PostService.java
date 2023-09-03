@@ -6,6 +6,7 @@ import com.example.WikiHow.entity.Post;
 import com.example.WikiHow.entity.Tag;
 
 import java.time.LocalDateTime;
+import java.util.ArrayList;
 
 public interface PostService {
 
@@ -20,4 +21,6 @@ public interface PostService {
     ApiResponse updateTime(LocalDateTime time, Integer id);
     ApiResponse updateDescription(TextDto dto, Integer id);
     ApiResponse setTags(Tag tag, Integer postId);
+
+    ApiResponse deleteAnyPosts(ArrayList<Integer> posts);
 }

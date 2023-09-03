@@ -12,6 +12,8 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDateTime;
+import java.util.ArrayList;
+import java.util.List;
 
 @Data
 @Service
@@ -90,5 +92,19 @@ public class PostServiceImpl implements PostService {
     @Override
     public ApiResponse setTags(Tag tag, Integer postId) {
         return null;
+    }
+
+    @Override
+    public ApiResponse deleteAnyPosts(ArrayList<Integer> postsId) {
+
+        List<Post> postList = new ArrayList<>();
+        for (Integer post : postsId) {
+            postList.add(postRepo.findById(post).stream().findFirst().orElse(null));
+        }
+        postRepo.deleteAll(postList);
+
+        return ApiResponse.builder()
+                .data(postList)
+                .build();
     }
 }
