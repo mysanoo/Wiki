@@ -46,6 +46,7 @@ public class AnswerServiceImpl implements AnswerService {
     @Override
     public ApiResponse deleteAnswer(Integer id) {
         Answer answer = answerRepo.findById(id).stream().findFirst().orElse(null);
+        assert answer != null;
         answerRepo.delete(answer);
         return ApiResponse.builder()
                 .data(answer)
@@ -53,11 +54,11 @@ public class AnswerServiceImpl implements AnswerService {
     }
 
     @Override
-    public ApiResponse getQuestionAnswers(Integer id) {
+    public ApiResponse getQuestionAnswers(Integer questionId) {
         List<Answer> answers = answerRepo.findAll();
         List<Answer> questionAnswers = new ArrayList<>();
         for (Answer answer : answers) {
-            if(answer.getQuestion().getId().equals(id)){
+            if(answer.getQuestion().getId().equals(questionId)){
                 questionAnswers.add(answer);
             }
         }
