@@ -55,8 +55,5 @@ public class UserServiceImpl implements UsersService {
                 .build();
     }
 
-    @Override
-    public ApiResponse blockUser(Integer id) {
-        return null;
-    }
+
 }

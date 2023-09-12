@@ -28,8 +28,8 @@ public class TipsServiceImpl implements TipsService {
     }
 
     @Override
-    public ApiResponse updateTipsText(TextDto dto, Integer id) {
-        Tips tips = tipsRepo.findById(id).stream().findFirst().orElse(null);
+    public ApiResponse updateTipsText(TextDto dto, Integer tipsId) {
+        Tips tips = tipsRepo.findById(tipsId).stream().findFirst().orElse(null);
         assert tips != null;
         tips.setText(dto.getText());
         tipsRepo.save(tips);
@@ -39,8 +39,8 @@ public class TipsServiceImpl implements TipsService {
     }
 
     @Override
-    public ApiResponse deleteTips(Integer id) {
-        Tips tips = tipsRepo.findById(id).stream().findFirst().orElse(null);
+    public ApiResponse deleteTips(Integer tipsId) {
+        Tips tips = tipsRepo.findById(tipsId).stream().findFirst().orElse(null);
         assert tips != null;
         tipsRepo.delete(tips);
         return ApiResponse.builder()

@@ -28,9 +28,9 @@ public class WarningServiceImpl implements WarningService {
     }
 
     @Override
-    public ApiResponse updateWarningText(TextDto dto, Integer id) {
+    public ApiResponse updateWarningText(TextDto dto, Integer warningId) {
 
-        Warnings warnings = warningsRepo.findById(id).stream().findFirst().orElse(null);
+        Warnings warnings = warningsRepo.findById(warningId).stream().findFirst().orElse(null);
         assert warnings != null;
         warnings.setText(dto.getText());
         warningsRepo.save(warnings);
@@ -41,8 +41,8 @@ public class WarningServiceImpl implements WarningService {
     }
 
     @Override
-    public ApiResponse deleteWarning(Integer id) {
-        Warnings warnings = warningsRepo.findById(id).stream().findFirst().orElse(null);
+    public ApiResponse deleteWarning(Integer warningId) {
+        Warnings warnings = warningsRepo.findById(warningId).stream().findFirst().orElse(null);
         assert warnings != null;
         warningsRepo.delete(warnings);
         return ApiResponse.builder()

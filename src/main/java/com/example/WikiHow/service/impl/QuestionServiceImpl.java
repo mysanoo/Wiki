@@ -55,22 +55,24 @@ public class QuestionServiceImpl implements QuestionService {
     }
 
     @Override
-    public ApiResponse helpFull(Integer id) {
-        Question question = theQuestion(id);
+    public ApiResponse helpFull(Integer questionId) {
+        Question question = theQuestion(questionId);
         if(question.getHelpful()==null){
             question.setHelpful(1);
         }else question.setHelpful(question.getHelpful()+1);
+        questionRepo.save(question);
         return ApiResponse.builder()
                 .data(question)
                 .build();
     }
 
     @Override
-    public ApiResponse NotHelpFull(Integer id) {
-        Question question = theQuestion(id);
+    public ApiResponse NotHelpFull(Integer questionId) {
+        Question question = theQuestion(questionId);
         if(question.getNot_helpful()==null){
             question.setNot_helpful(1);
         }else question.setNot_helpful(question.getNot_helpful()+1);
+        questionRepo.save(question);
         return ApiResponse.builder()
                 .data(question)
                 .build();

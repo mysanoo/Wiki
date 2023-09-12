@@ -18,14 +18,15 @@ public class TagsServiceImpl implements TagsService {
         Tag newTag = Tag.builder()
                 .name(tag.getName())
                 .build();
+        tagsRepo.save(newTag);
         return ApiResponse.builder()
                 .data(newTag)
                 .build();
     }
 
     @Override
-    public ApiResponse updateTagName(String name, Integer id) {
-        Tag tag = tagsRepo.findById(id).stream().findFirst().orElse(null);
+    public ApiResponse updateTagName(String name, Integer tagId) {
+        Tag tag = tagsRepo.findById(tagId).stream().findFirst().orElse(null);
         assert tag!=null;
         tag.setName(name);
         tagsRepo.save(tag);
@@ -35,8 +36,8 @@ public class TagsServiceImpl implements TagsService {
     }
 
     @Override
-    public ApiResponse deleteTag(Integer id) {
-        Tag tag = tagsRepo.findById(id).stream().findFirst().orElse(null);
+    public ApiResponse deleteTag(Integer tagId) {
+        Tag tag = tagsRepo.findById(tagId).stream().findFirst().orElse(null);
         assert tag!=null;
         tagsRepo.delete(tag);
         return ApiResponse.builder()

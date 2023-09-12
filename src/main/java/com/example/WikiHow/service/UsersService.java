@@ -10,5 +10,4 @@ public interface UsersService {
 
     User theUser(Integer id);
 
-    ApiResponse blockUser(Integer id);
 }
