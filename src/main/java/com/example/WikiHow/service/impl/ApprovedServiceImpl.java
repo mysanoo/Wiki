@@ -16,7 +16,6 @@ import org.springframework.stereotype.Service;
 public class ApprovedServiceImpl implements ApprovedService {
 
     private final ApprovedRepo approvedRepo;
-    private final UserServiceImpl userService;
     private final PostRepo postRepo;
 
     @Override
